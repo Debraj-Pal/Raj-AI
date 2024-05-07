@@ -9,7 +9,6 @@ import pyaudio
 import os
 import webbrowser
 import pywhatkit as kit
-from config import apikey
 import google.generativeai as genai
 import requests
 from bs4 import BeautifulSoup
