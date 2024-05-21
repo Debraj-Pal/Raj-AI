@@ -37,7 +37,7 @@ def ring(time):
         currenttime = datetime.datetime.now().strftime("%H:%M:%S")
         if currenttime ==AlarmTime:
             speak("Alarm ringing, sir")
-            os.startfile("D:\\Software Back up\\Entertainment\\Songs\\Music\\Bones(PaglaSongs).mp3")
+            os.startfile("LOCATION OF THE SONG")
         elif currenttime+"00:00:30"==AlarmTime:
             exit()
 
