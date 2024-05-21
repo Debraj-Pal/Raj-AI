@@ -129,7 +129,7 @@ def alarm(query):
 
 def news():
 
-    newsurl="https://newsapi.org/v2/everything?q=Apple&from=2024-04-15&sortBy=popularity&apiKey=96ec2e7739164d0fa1f748784ee162f3"
+    newsurl="https://newsapi.org/v2/everything?q=Apple&from=2024-04-15&sortBy=popularity&apiKey=YOUR_NEWS_APIKEY"
     main_page = requests.get(newsurl).json()
     articles = main_page["articles"]
     head=[]
@@ -146,7 +146,7 @@ def message():
     min = int((datetime.datetime.now() + timedelta(minutes=2)).strftime("%M"))
     speak("What's the message sir")
     send_message=str(input(" "))
-    kit.sendwhatmsg(f"+91{num}",send_message,hour,min)
+    kit.sendwhatmsg(f"+91{num}",send_message,hour,min) #+91 is for India
 
 
 
@@ -170,7 +170,7 @@ if __name__ == '__main__':
                 query=takecommand()
 
                 if "open Whatsapp".lower() in query.lower():
-                   path = "C:\\Users\\N C PAUL\\Desktop\\WhatsApp.lnk"
+                   path = "PATH_FOR_WHATSAPP_DESKTOP_APP_IN.lnk"
                    speak("Opening WhatsApp sir")
                    os.startfile(path)
 
@@ -178,15 +178,6 @@ if __name__ == '__main__':
                 elif "close Whatsapp".lower() in query.lower():
                     speak("Closing Whatsapp sir")
                     os.system("taskkill /f /im WhatsApp.exe")
-
-                elif "open Zoom".lower() in query.lower():
-                  npath = "C:\\Users\\N C PAUL\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe"
-                  speak("Opening Zoom sir")
-                  os.startfile(npath)
-
-                elif "close zoom".lower() in query.lower():
-                    speak("Closing Zoom sir")
-                    os.system("taskkill /f /im Zoom.exe")
 
                 elif "show wi-fi speed".lower() in query.lower():
                     wifi = speedtest.Speedtest()
@@ -231,7 +222,6 @@ if __name__ == '__main__':
                 elif "exit cinema mode".lower() in query.lower():
                     pyautogui.press("t")
                     speak("disabled cinema mode")
-
                 elif "full screen".lower() in query.lower():
                     pyautogui.press("f")
                     speak("enabled fullscreen")
@@ -288,7 +278,7 @@ if __name__ == '__main__':
                     news()
 
                 elif "what is the weather today in".lower() in query.lower():
-                    search = "weather in Kasba"
+                    search = "weather in (YOUR_CITY_NAME)"
                     url = f"https://www.google.com/search?q={search}"
                     r = requests.get(url)
                     data = BeautifulSoup(r.text,"html.parser")
@@ -315,17 +305,13 @@ if __name__ == '__main__':
                     speak("You told me"+remember.read())
 
                 elif "play music".lower() in query.lower():
-                  music = "D:\\Software Back up\\Entertainment\\Songs\\Music"
+                  music = "PATH_FOR_THE_FOLDER_IN_WHICH_SONGS_ARE_THERE"
                   songs = os.listdir(music)
                   for song in songs:
                     if song.endswith('.mp3'):
                         speak("Playing music sir")
                         os.startfile(os.path.join(music, song))
-
-                elif "I am tired".lower() in query.lower():
-                    speak("Playing your favourite songs")
-                    webbrowser.open("https://open.spotify.com/playlist/2SNI12ibWSwJ4gJazGPz0X")
-
+                        
                 elif "tell me a joke".lower() in query.lower():
                     joke = pyjokes.get_joke()
                     print(f"Jarvis: {joke}")
@@ -358,10 +344,9 @@ if __name__ == '__main__':
                 sites = [["spotify","https://open.spotify.com/"],["messenger","https://www.messenger.com/"],
                  ["stack overflow","https://www.stackoverflow.com"],["facebook","https://www.facebook.com"],
                  ["Instagram","https://www.instagram.com"],["Chat","https://www.instagram.com/direct/inbox/"]
-                 ,["High Anime","https://hianime.to/home"],["SLS campuscare","https://www.slscampuscare.in/"],
-                 ["Gmail","https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox"],["Amazon","https://www.amazon.in/"],
+                 ,["Amazon","https://www.amazon.in/"],
                  ["Bing","https://www.bing.com/"],["Wikipedia","https://www.wikipedia.com"],
-                  ["Google","https://www.google.com/"],["Web","https://web.whatsapp.com/"]]
+                  ["Google","https://www.google.com/"]]
                 for site in sites:
                   if f"Open {site[0]}".lower() in query.lower():
                     speak(f"Opening {site[0]} sir")
