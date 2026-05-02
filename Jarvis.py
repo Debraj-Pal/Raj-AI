@@ -53,7 +53,7 @@ def takecommand():
     return query
 
 
-# to make jarvis wish you
+# to make Raj wish you
 def wish():
     hour = int(datetime.datetime.now().hour)
     min = int(datetime.datetime.now().minute)
@@ -80,7 +80,7 @@ def chat(query):
     chatstr = ""
     print(chatstr)
     chatstr+=f"User: {query}"
-    GOOGLE_API_KEY="YOUR_APIKEY"
+    GOOGLE_API_KEY="YOUR_API_KEY"
     genai.configure(api_key=GOOGLE_API_KEY)
 
 
@@ -110,14 +110,14 @@ def chat(query):
         },
     ]
 
-    model = genai.GenerativeModel(model_name='gemini-1.0-pro-latest',
+    model = genai.GenerativeModel(model_name='gemini-3.0-pro-latest',
                                   generation_config=generation_config,
                                   safety_settings=safety_settings)
 
     convo = model.start_chat()
     convo.send_message(chatstr)
-    print(f"Jarvis: {convo.last.text}")
-    speak(f"Jarvis: {convo.last.text}")
+    print(f"Raj: {convo.last.text}")
+    speak(f"Raj: {convo.last.text}")
 
 
 
@@ -148,23 +148,11 @@ def message():
     send_message=str(input(" "))
     kit.sendwhatmsg(f"+91{num}",send_message,hour,min) #+91 is for India
 
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-
-
-
-
 
     while True:
          query = takecommand()
-         if "Hey Jarvis".lower() in query.lower():
+         if "Hey Raj".lower() in query.lower():
             wish()
             while True:
                 query=takecommand()
@@ -173,7 +161,6 @@ if __name__ == '__main__':
                    path = "PATH_FOR_WHATSAPP_DESKTOP_APP_IN.lnk"
                    speak("Opening WhatsApp sir")
                    os.startfile(path)
-
 
                 elif "close Whatsapp".lower() in query.lower():
                     speak("Closing Whatsapp sir")
@@ -314,7 +301,7 @@ if __name__ == '__main__':
                         
                 elif "tell me a joke".lower() in query.lower():
                     joke = pyjokes.get_joke()
-                    print(f"Jarvis: {joke}")
+                    print(f"Raj: {joke}")
                     speak(joke)
 
                 elif "take a screenshot".lower() in query.lower():
@@ -323,8 +310,6 @@ if __name__ == '__main__':
                     speak("Okay sir, taking a screenshot")
                     time.sleep(5)
                     image = pyautogui.screenshot()
-
-
                     image.save(f"{sc}.png")
 
                 elif "shutdown the system".lower() in query.lower():
@@ -336,8 +321,7 @@ if __name__ == '__main__':
                 elif "sleep the system".lower() in query.lower():
                     os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
 
-
-                elif "Jarvis Quit".lower() in query.lower():
+                elif "Raj Quit".lower() in query.lower():
                   speak("Ok sir. Quitting. Have a nice day sir.")
                   exit()
 
@@ -356,6 +340,5 @@ if __name__ == '__main__':
                       pyautogui.hotkey('ctrl', 'w')
 
                 else:
-
                   chat(query)
 
